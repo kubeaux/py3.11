@@ -40,7 +40,7 @@ def see_lines(width, height, lines):
     for i_start, j_start, i_end, j_end in lines:
         if i_start == i_end:
             res[i_start, j_start : j_end + 1] = 1
-        else:
+        else: 
             res[i_start : i_end + 1, j_start] = 1
-     
+            
     return res
