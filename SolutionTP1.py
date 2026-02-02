@@ -38,9 +38,5 @@ def see_quadrant(image_name, quadrant) :
 def see_lines(width, height, lines):
     res = np.zeros((height, width), dtype=np.uint8)
     for i_start, j_start, i_end, j_end in lines:
-        if i_start == i_end:
-            res[i_start, j_start : j_end + 1] = 1
-        else: 
-            res[i_start : i_end + 1, j_start] = 1
-            
+        res[i_start : i_end + 1, j_start : j_end + 1] = 1
     return res
