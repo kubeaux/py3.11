@@ -35,8 +35,16 @@ def see_quadrant(image_name, quadrant) :
     pxl_val = img[t_i, t_j]
     return int(pxl_val)
 
+import numpy as np
+
 def see_lines(width, height, lines):
-    res = np.zeros((height, width), dtype=np.uint8)
-    for i_start, j_start, i_end, j_end in lines:
-        res[i_start : i_end + 1, j_start : j_end + 1] = 1
+    res = np.zeros((height, width), dtype=int)
+    for (i_start, j_start, i_end, j_end) in lines:
+        if i_start == i_end:
+            for j in range(j_start, j_end):
+                res[i_start, j] = 1
+        elif j_start == j_end:
+            for i in range(i_start, i_end):
+                res[i, j_start] = 1
     return res
+            
