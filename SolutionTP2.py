@@ -43,3 +43,35 @@ def see_lines(height, width, lines):
                 e = e + dx
         
     return res
+
+def see_lines_complete(height, width, lines):
+    res = np.zeros((height, width), dtype=int)
+    
+    for (i_start, j_start, i_end, j_end) in lines:
+        x0 = int(j_start)
+        y0 = int(i_start)
+        x1 = int(j_end)
+        y1 = int(i_end)
+        
+        dx = abs(x1 - x0)
+        dy = -abs(y1 - y0)
+        sx = 1 if x0 < x1 else -1
+        sy = 1 if y0 < y1 else -1
+        err = dx + dy
+        
+        while True:
+            if 0 <= y0 < height and 0 <= x0 < width:
+                res[y0, x0] = 1
+            
+            if x0 == x1 and y0 == y1:
+                break
+            
+            e2 = 2 * err
+            if e2 >= dy:
+                err += dy
+                x0 += sx
+            if e2 <= dx:
+                err += dx
+                y0 += sy
+                
+    return res
