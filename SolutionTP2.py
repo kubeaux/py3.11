@@ -5,10 +5,10 @@ def see_lines(height, width, lines):
     res = np.zeros((height, width), dtype=int)
 
     for (i_start, j_start, i_end, j_end) in lines:
-        x1 = j_start
-        y1 = i_start
-        x2 = j_end
-        y2 = i_end
+        x1 = i_start
+        y1 = j_start
+        x2 = i_end
+        y2 = j_end
 
         if x1 > x2:
             x1, x2 = x2, x1
